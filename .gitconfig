@@ -6,3 +6,10 @@
 [user]
 	name = lsweigart12
 	email = 73839819+lsweigart12@users.noreply.github.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM74vgXlNbz2TQFG+gNNuZWLrTH153bsLT3bBzbHRloT
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true

@@ -113,10 +113,17 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-. "$HOME/.local/bin/env"
+# uv / cargo installer env (only source if present)
+[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+
+# Make sure ~/.local/bin is on PATH even when the env file above is absent
+export PATH="$HOME/.local/bin:$PATH"
 
 # fnm (Fast Node Manager)
-eval "$(fnm env --use-on-cd --shell zsh)"
+# --use-on-cd: auto-switch Node when entering a dir with .node-version/.nvmrc
+# --version-file-strategy=recursive: walk up parent dirs to find one (helps in monorepos)
+# --corepack-enabled: run `corepack enable` automatically on new Node installs
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --shell zsh)"
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 # fzf (fuzzy finder): Ctrl+R history, Ctrl+T file picker, Alt+C cd picker
@@ -124,3 +131,11 @@ source <(fzf --zsh)
 
 # zoxide (smarter cd): use `z <partial>` to jump to frequently-used dirs
 eval "$(zoxide init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/lukesweigart/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

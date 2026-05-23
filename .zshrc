@@ -122,8 +122,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # fnm (Fast Node Manager)
 # --use-on-cd: auto-switch Node when entering a dir with .node-version/.nvmrc
 # --version-file-strategy=recursive: walk up parent dirs to find one (helps in monorepos)
-# --corepack-enabled: run `corepack enable` automatically on new Node installs
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --shell zsh)"
+# (pnpm is installed via Homebrew and self-manages versions from the
+#  "packageManager" field in package.json, so corepack is not used.)
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 # fzf (fuzzy finder): Ctrl+R history, Ctrl+T file picker, Alt+C cd picker

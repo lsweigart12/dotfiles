@@ -20,6 +20,18 @@ fi
 log "Installing Homebrew packages..."
 brew bundle install --file="$DOTFILES_DIR/Brewfile"
 
+# Node via fnm. pnpm is installed by Homebrew (see Brewfile) and self-manages
+# per-project versions from package.json's "packageManager" field, so corepack
+# is not needed (Node 25+ no longer bundles it anyway).
+if command -v fnm >/dev/null 2>&1; then
+  log "Installing latest Node via fnm..."
+  eval "$(fnm env)"
+  fnm install --latest
+  node_version="$(fnm ls | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -1)"
+  fnm default "$node_version"
+  fnm use "$node_version"
+fi
+
 # oh-my-zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   log "Installing oh-my-zsh..."

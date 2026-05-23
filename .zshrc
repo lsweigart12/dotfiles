@@ -140,3 +140,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+# direnv: per-directory env via .envrc; run `direnv allow` to trust a new file
+eval "$(direnv hook zsh)"
+
+export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib:$DYLD_FALLBACK_LIBRARY_PATH

@@ -1,1 +1,6 @@
-theme = Rose Pine Moon
+theme = Raycast Dark
+
+# Fix "ncurses: cannot initialize terminal type" over SSH.
+# ssh-terminfo: auto-installs the xterm-ghostty terminfo on the remote host.
+# ssh-env: falls back to a sane TERM if installing terminfo isn't possible.
+shell-integration-features = ssh-env,ssh-terminfo

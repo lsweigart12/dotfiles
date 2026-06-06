@@ -1,5 +1,11 @@
 theme = Raycast Dark
 
+# macOS native transparency + frosted-glass blur behind the window.
+background-opacity = 0.85
+background-blur-radius = 20
+# Let the titlebar blend in with the transparent background.
+macos-titlebar-style = transparent
+
 # Fix "ncurses: cannot initialize terminal type" over SSH.
 # ssh-terminfo: auto-installs the xterm-ghostty terminfo on the remote host.
 # ssh-env: falls back to a sane TERM if installing terminfo isn't possible.

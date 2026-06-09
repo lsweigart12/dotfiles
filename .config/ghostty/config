@@ -1,8 +1,9 @@
 theme = Raycast Dark
 
-# macOS native transparency + frosted-glass blur behind the window.
-background-opacity = 0.85
-background-blur-radius = 20
+# macOS 26+ native Liquid Glass material (NSGlassEffectView).
+# Lower opacity lets more of the glass material show through.
+background-opacity = 0.5
+background-blur = macos-glass-regular
 # Let the titlebar blend in with the transparent background.
 macos-titlebar-style = transparent
 
